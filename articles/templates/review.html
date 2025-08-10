@@ -1,10 +1,22 @@
 {% extends 'base.html' %} {% block content %}
 
 <!-- urls.py에서  path name define -->
-<form action="{% url 'articles:create_review' %}" method="POST">
+<!-- class="form-group"은 bootstrap class -->
+<form
+    class="form-group"
+    action="{% url 'articles:create_review' %}" 
+    method="POST">
+
     {% csrf_token %}
-    <label for="content">보낼 메세지</label>
-    <input type="text", id="content", name="content">
+
+    <!-- <label for="content">보낼 메세지</label>
+    <input class="form-group", type="text", id="content", name="content">
+    <input type="submit" value="Send"> -->
+
+    <label for="title">Title: </label>
+    <input class="form-control" type="text" name="title"/><br/>
+    <label for="content">Content: </label>
+    <textarea class="form-control" name="content" cols="30" rows="5"></textarea><br/>
     <input type="submit" value="Send">
 </form>
 
