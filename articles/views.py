@@ -27,8 +27,7 @@ def create_review(request):
     title = request.POST.get('title')
     article = Article(title=title, content=content)
     article.save()
-    return redirect('articles.detail', article.pk)
-    # return render(request, 'articles.detail', article.pk)
+    return redirect('articles:detail', article.pk)
 
 def detail(request, pk):
     article = Article.objects.get(pk=pk)
@@ -36,3 +35,25 @@ def detail(request, pk):
         'article' : article,
     }
     return render(request, 'detail.html', context)
+
+def delete(request, pk):
+    article = Article.objects.get(pk=pk)
+    if request.mothod =='POST':
+        article.delete()
+    return redirect('articles:dinner')
+
+def edit(request, pk):
+    article = Article.objects.get(pk=pk)
+    context = {
+        'article' : article,
+    }
+    return render(request, 'edit.html', context)
+
+def update(request, pk):
+    article = Article.objects.get(pk=pk)
+    article.title = request.POST.get('content')
+    article.content = request.POST.get('content')
+    article.save()
+    return redirect('articles:detail', article.pk)
+
+

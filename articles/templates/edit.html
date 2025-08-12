@@ -1,0 +1,20 @@
+{% extends 'base.html' %} {% block content %}
+
+<h1 class="text-center">리뷰 수정</h1>
+<h3>{{ article.pk }} 번째 글</h3>
+<form
+    class="form-control"
+    action="{% url 'articles:update' article.pk %}" 
+    method="POST">
+
+    {% csrf_token %}
+
+    <label for="title">Title: </label>
+    <input class="form-control" type="text" name="title" value="{{ article.title }}"/><br/>
+    <label for="content">Content: </label>
+    <!-- <textarea class="form-control" name="content" cols="30" rows="5" value="{{ article.content }}"></textarea><br/> -->
+    <textarea class="form-control" name="content" cols="30" rows="5">{{ article.content }}</textarea><br/>
+    <input type="submit" value="저장">
+</form>
+
+{% endblock %}
